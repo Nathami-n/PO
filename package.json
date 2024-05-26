@@ -1,0 +1,17 @@
+{
+  "name": "point-of-sale",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "",
+  "license":"ISC",
+  "devDependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.1",
+    "ts-node": "^10.9.2"
+  }
+}
