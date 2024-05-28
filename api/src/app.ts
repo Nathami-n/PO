@@ -8,7 +8,7 @@ import cors from 'cors';
 import {delegateFunction} from './config/cors-config';
 import {PORT, mongoUri} from './config/connection';
 import {makeConnection} from './db/mongo';
-import {authRouter} from './routes/auth';
+import {authRouter} from "./routes/auth";
 
 //app
 const app = express();
@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 
 //authentication
-app.use('/', authRouter);
+app.use('/auth/register', authRouter);
 
 
 const startServer =  async () => {

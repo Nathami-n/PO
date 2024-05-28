@@ -1,8 +1,8 @@
 import type {Request, Response} from 'express';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import { createUser } from 'model/user-models';
+import { createUser } from '../model/user-models';
+
 export const createAdmin = async (req: Request, res: Response) => {
     const {
         email,
@@ -26,9 +26,9 @@ export const createAdmin = async (req: Request, res: Response) => {
             return res.status(500).send({success: false, data: {body: null, error: "internal server error"}})
         };
 
-        const {hashedPassword, ...rest} = returnedUser;
+        const {hashedPassword: pass, ...rest} = returnedUser.toObject();
 
-        return res.json({success: true, data: {body: rest, error: null}});
+        return res.json({success: true, data: {body: rest,error: null}});
 
     } catch (error: any) {
         return res.json({success: false, data: {body: null, error: error.message}});
