@@ -21,6 +21,10 @@ app.use(compression());
 app.use(cookieParser());
 
 
+//authentication
+
+
+
 const startServer =  async () => {
     try {
         await makeConnection(mongoUri);
