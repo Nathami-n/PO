@@ -5,9 +5,9 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import {delegateFunction} from '../config/cors-config';
-import {PORT, mongoUri} from '../config/connection';
-import {makeConnection} from '../db/mongo';
+import {delegateFunction} from './config/cors-config';
+import {PORT, mongoUri} from './config/connection';
+import {makeConnection} from './db/mongo';
 
 
 //app
@@ -31,3 +31,5 @@ const startServer =  async () => {
     }
 }
 
+
+startServer();
