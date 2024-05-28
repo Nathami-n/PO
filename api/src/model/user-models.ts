@@ -1,5 +1,6 @@
-import { Schema, model } from "mongoose";
-import {Admin} from "../interfaces/project-interfaces";
+import { Schema, model} from "mongoose";
+import {Admin, union} from "../interfaces/project-interfaces";
+
 
 
 const AdminSchema = new Schema<Admin>({
@@ -21,9 +22,36 @@ const AdminSchema = new Schema<Admin>({
     },
     role: {
          type: String,
+         default: 'admin'
     }
 });
 
 //create the model
 
 export const AdminModel = model("Admin", AdminSchema);
+
+
+//database methods
+export const createUser = async (name: string, data: union) => {
+    let modelName;
+
+    switch(name) {
+        case 'Admin': {
+            modelName = AdminModel;
+        };
+        default: {
+            console.log("error");
+        }
+    };
+
+    //create the document
+    try {
+        if(modelName !== null) {
+            await modelName.create(data);
+        };
+
+    } catch (error: any) {
+        console.log("error in creating document");
+        console.error(error);
+    }
+}
