@@ -16,7 +16,7 @@ const AdminSchema = new Schema<Admin>({
         type: String,
         default:"https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
     },
-    password: {
+    hashedPassword: {
         type: String,
         required: true,
     },
@@ -52,7 +52,8 @@ export const createUser = async (name: string, data: union) => {
     //create the document
     try {
         if(modelName !== null) {
-            await modelName.create(data);
+            const user = await modelName.create(data);
+            return user;
         };
 
     } catch (error: any) {

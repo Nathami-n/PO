@@ -1,7 +1,7 @@
 interface Admin {
     name: string;
     email: string;
-    password: string;
+    hashedPassword: string;
     avatar?: string;
     authentication: {
         refreshToken: string;
@@ -13,7 +13,7 @@ interface Admin {
 interface User {
     name: string;
     email: string;
-    password: string;
+    hashedPassword: string;
     authetication: {
         refreshToken: string;
     }
