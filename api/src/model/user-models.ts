@@ -20,6 +20,11 @@ const AdminSchema = new Schema<Admin>({
         type: String,
         required: true,
     },
+    authentication: {
+        accessToken: {
+            type: String
+        }
+    },
     role: {
          type: String,
          default: 'admin'
