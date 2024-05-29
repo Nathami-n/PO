@@ -1,7 +1,7 @@
 import type {Request, Response} from 'express';
 import bcrypt from 'bcrypt';
 
-import { createUser } from '../model/user-models';
+import { createUser, getUserByEmail } from '../model/user-models';
 
 export const createAdmin = async (req: Request, res: Response) => {
     const {
@@ -16,6 +16,9 @@ export const createAdmin = async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const userData = { email, name, hashedPassword, authentication: {refreshToken: ''} };
+
+    //check whether user exists
+    const isUserRegistered = await getUserByEmail(email);
 
 
     //save user to database

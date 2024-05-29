@@ -68,10 +68,12 @@ export const createUser = async (name: string, data: union) => {
     }
 };
 
-export const getUserByEmail = ( type: ("Admin" | "User"), email: string) => {
+export const getUserByEmail = async ( type: ("Admin" | "User"), email: string) => {
     let model: Model<typeof AdminModel | typeof UserModel> = userChoice[type];
     try {
-
+        const userFromDatabase = await model.findOne({email});
+        if(!userFromDatabase) return null;
+        return userFromDatabase;
 
     } catch (error: any) {
         console.error(error);
