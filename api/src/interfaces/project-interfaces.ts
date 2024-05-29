@@ -26,5 +26,6 @@ type union = Admin | User
 
 export {
     Admin,
-    union
+    union,
+    User
 }

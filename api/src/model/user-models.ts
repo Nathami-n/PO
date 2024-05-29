@@ -1,8 +1,9 @@
-import { Schema, model} from "mongoose";
-import {Admin, union} from "../interfaces/project-interfaces";
+import { Schema, model, type Model} from "mongoose";
+import {Admin, union, User} from "../interfaces/project-interfaces";
 
 
 
+const UserSchema = new Schema<User>({});
 const AdminSchema = new Schema<Admin>({
     name: {
         type: String, 
@@ -31,9 +32,14 @@ const AdminSchema = new Schema<Admin>({
     }
 });
 
-//create the model
-
+//create the models
 export const AdminModel = model("Admin", AdminSchema);
+export const UserModel = model("User", UserSchema);
+
+const userChoice: Record<("Admin"|"User"), Model<any>> = {
+    Admin: AdminModel,
+    User: UserModel,
+}
 
 
 //database methods
@@ -58,6 +64,16 @@ export const createUser = async (name: string, data: union) => {
 
     } catch (error: any) {
         console.log("error in creating document");
+        console.error(error);
+    }
+};
+
+export const getUserByEmail = ( type: ("Admin" | "User"), email: string) => {
+    let model: Model<typeof AdminModel | typeof UserModel> = userChoice[type];
+    try {
+
+
+    } catch (error: any) {
         console.error(error);
     }
 }
