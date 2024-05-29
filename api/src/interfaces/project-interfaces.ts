@@ -14,7 +14,7 @@ interface User {
     name: string;
     email: string;
     hashedPassword: string;
-    authetication: {
+    authentication: {
         refreshToken: string;
     }
     avatar?: string;
