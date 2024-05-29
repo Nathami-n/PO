@@ -18,8 +18,10 @@ export const createAdmin = async (req: Request, res: Response) => {
     const userData = { email, name, hashedPassword, authentication: {refreshToken: ''} };
 
     //check whether user exists
-    const isUserRegistered = await getUserByEmail(email);
-
+    const isUserRegistered = await getUserByEmail("Admin", email);
+    if(isUserRegistered || isUserRegistered !== null) {
+        return res.json({success: false, data: {body: null, error: "Already registered"}});
+    }
 
     //save user to database
     try {
