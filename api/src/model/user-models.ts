@@ -59,8 +59,8 @@ const AdminSchema = new Schema<Admin>({
 });
 
 //create the models
-export const AdminModel = model("Admin", AdminSchema);
-export const UserModel = model("User", UserSchema);
+export const AdminModel = model<Admin>("Admin", AdminSchema);
+export const UserModel = model<User>("User", UserSchema);
 
 const userChoice: Record<"Admin" | "User", Model<any>> = {
   Admin: AdminModel,
@@ -95,10 +95,10 @@ export const createUser = async (name: string, data: union) => {
   }
 };
 
-export const getUserByEmail = async (type: "Admin" | "User", email: string) => {
-  let model: Model<typeof AdminModel | typeof UserModel> = userChoice[type];
+export const getUserByEmail = async (type: ("Admin" | "User"), email: string) => {
+  let model = userChoice[type];
   try {
-    const userFromDatabase = await model.findOne({ email });
+    const userFromDatabase = await model.findOne({ email }) as Admin | User | null;
     if (!userFromDatabase) return null;
     return userFromDatabase;
   } catch (error: any) {

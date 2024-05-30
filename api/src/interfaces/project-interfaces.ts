@@ -10,15 +10,8 @@ interface Admin {
 
 };
 
-interface User {
-    name: string;
-    email: string;
-    hashedPassword: string;
-    authentication: {
-        refreshToken: string;
-    }
-    avatar?: string;
-    role: string;
+interface User extends Admin {
+    role: "user";
 }
 
 
@@ -28,4 +21,4 @@ export {
     Admin,
     union,
     User
-}
+};

@@ -78,4 +78,21 @@ export const createNormalUser = async (req: Request, res: Response) => {
     }
 
 
+};
+
+export const loginAdmin =  async (req: Request, res: Response) => {
+    const {email, password} = req.body;
+    
+    if(!email || !password) return res.json({success: false, data: {body: null, error: "Please input values"}});
+    
+    //check whether the user exists in database
+    const isUserFound = await getUserByEmail("Admin", email);
+    if(!isUserFound) {
+        return res.json({success: false, data: {body: null, error: "Not allowed"}});
+    };
+    
+    //check password
+    const isPasswordValid = bcrypt.compare(password, isUserFound.hashedPassword);
+    //generate jwt tokens
+
 }
