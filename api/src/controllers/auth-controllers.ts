@@ -99,7 +99,9 @@ export const loginAdmin =  async (req: Request, res: Response) => {
         return res.json({success: false, data: {body: null, error: "Check password"}});
     };
 
-     return console.log("verified");
     //generate jwt tokens
 
-}
+
+
+};
+
