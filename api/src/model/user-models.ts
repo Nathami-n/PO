@@ -1,6 +1,6 @@
 import { Schema, model, type Model } from "mongoose";
 import { Admin, union, User } from "../interfaces/project-interfaces";
-import jwt from 'jsonwebtoken';
+
 
 const UserSchema = new Schema<User>({
   name: {
@@ -59,9 +59,75 @@ const AdminSchema = new Schema<Admin>({
   },
 });
 
+
+//add methods to schemas
+
+// AdminSchema.methods.generateAccessToken = function () {
+//   return (
+//     jwt.sign(
+//       {
+//         _id: this._id,
+//         email: this.email
+//       },
+//       process.env.ACCESS_TOKEN as string,
+//       {
+//         expiresIn: "15m"
+//       }
+//     )
+//   )
+// };
+
+
+// UserSchema.methods.generateAccessToken = function () {
+//   return (
+//     jwt.sign(
+//       {
+//         _id: this._id,
+//         email: this.email
+//       },
+//       process.env.ACCESS_TOKEN as string,
+//       {
+//         expiresIn: "15m"
+//       }
+//     )
+//   )
+// };
+
+// UserSchema.methods.generateRefreshToken = function () {
+//   return (
+//     jwt.sign(
+//       {
+//         _id: this._id,
+//         email: this.email
+//       },
+//       process.env.REFRESH_TOKEN as string,
+//       {
+//         expiresIn: "15d"
+//       }
+//     )
+//   )
+// };
+
+// AdminSchema.methods.generateRefreshToken = function () {
+//   return (
+//     jwt.sign(
+//       {
+//         _id: this._id,
+//         email: this.email
+//       },
+//       process.env.REFRESH_TOKEN as string,
+//       {
+//         expiresIn: "15d"
+//       }
+//     )
+//   )
+// };
+
+
+
 //create the models
-export const AdminModel = model<Admin>("Admin", AdminSchema);
-export const UserModel = model<User>("User", UserSchema);
+export const AdminModel = model("Admin", AdminSchema);
+export const UserModel = model("User", UserSchema);
 
 const userChoice: Record<"Admin" | "User", Model<any>> = {
   Admin: AdminModel,
@@ -107,36 +173,11 @@ export const getUserByEmail = async (type: ("Admin" | "User"), email: string) =>
   }
 };
 
-//add methods to schemas
 
-AdminSchema.methods.generateAccessToken = function () {
-  return (
-    jwt.sign(
-      {
-        _id: this._id,
-        email: this.email
-      },
-      process.env.ACCESS_TOKEN as string,
-      {
-        expiresIn: "15m"
-      }
-    )
-  )
-};
 
-//generate refresh tokens
 
-AdminSchema.methods.generateRefreshToken = function () {
-  return (
-    jwt.sign(
-      {
-        _id: this._id,
-        email: this.email
-      },
-      process.env.REFRESH_TOKEN as string,
-      {
-        expiresIn: "15d"
-      }
-    )
-  )
-}
+
+
+
+//method to generate tokens
+

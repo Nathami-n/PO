@@ -1,5 +1,11 @@
 import type {Request, Response} from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config({
+    path: "./.env"
+});
 
 import { AdminModel, createUser, getUserByEmail } from '../model/user-models';
 
@@ -88,7 +94,6 @@ export const loginAdmin =  async (req: Request, res: Response) => {
     
     //check whether the user exists in database
     const isUserFound = await AdminModel.findOne({email: email as string});
-    console.log(isUserFound);
     if(!isUserFound) {
         return res.json({success: false, data: {body: null, error: "User not found in database"}});
     };
@@ -100,7 +105,20 @@ export const loginAdmin =  async (req: Request, res: Response) => {
     };
 
     //generate jwt tokens
+    const accessToken = jwt.sign({id: isUserFound._id, email: isUserFound.email}, process.env.ACCESS_TOKEN as string, {expiresIn: '15m'});
+    const refreshToken =  jwt.sign({id: isUserFound._id, email: isUserFound.email}, process.env.REFRESH_TOKEN as string, {expiresIn: '7d'});
 
+    //update the authentication
+    try {
+        const updatedUser = await isUserFound.updateOne({authentication: {refreshToken: refreshToken}});
+        const newUser = await AdminModel.findOne({email: isUserFound.email});
+        const {hashedPassword: pass, ...rest} = newUser.toObject();
+
+        return res.json({success: true, data: {body: rest, error: null}});
+
+    } catch (e: any) {
+        throw new Error(e.message);
+    }
 
 
 };
