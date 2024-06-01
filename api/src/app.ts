@@ -22,7 +22,8 @@ app.use(cookieParser());
 
 
 //authentication
-app.use('/auth/register', authRouter);
+app.use('/auth', authRouter);
+
 
 
 const startServer =  async () => {
