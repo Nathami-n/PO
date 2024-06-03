@@ -2,7 +2,7 @@ import type {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 
-interface CustomRequest extends Request {
+ export interface CustomRequest extends Request {
     email: string;
     id: string;
 }
@@ -22,7 +22,7 @@ export const verifyJWT = (req: CustomRequest, res: Response, next: NextFunction)
 
     //decode the token 
     jwt.verify(token, process.env.ACCESS_TOKEN as string, (err, decoded: {id: string, email: string}) => {
-        if(err) return res.sendStatus(403);
+        if(err) return res.status(403).json({message: "fatal error"});
         req.email = decoded.email;
         req.id = decoded.id;
         next();
