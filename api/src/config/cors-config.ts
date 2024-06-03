@@ -11,4 +11,6 @@ export const delegateFunction = (req: Request, callback: (err: Error | null, cor
         corOptions = { origin: false};
     };
     callback(null, corOptions);
-}
+};
+
+
