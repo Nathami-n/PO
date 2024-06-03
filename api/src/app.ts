@@ -9,6 +9,7 @@ import {delegateFunction} from './config/cors-config';
 import {PORT, mongoUri} from './config/connection';
 import {makeConnection} from './db/mongo';
 import {authRouter} from "./routes/auth";
+import { eventLogger } from './middleware/eventLogger';
 
 //app
 const app = express();
@@ -16,6 +17,7 @@ const server = createServer(app);
 
 //middleware
 app.use(express.json());
+app.use(eventLogger)
 app.use(cors(delegateFunction));
 app.use(compression());
 app.use(cookieParser());
