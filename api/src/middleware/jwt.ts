@@ -8,8 +8,8 @@ import jwt from 'jsonwebtoken';
 }
 
 export const verifyJWT = (req: CustomRequest, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(" ")[1] || req.headers["authorization"].split("")[1];
-
+    const token = req.headers.authorization;
+    console.log(token);
     if(!token) {
         return res.status(404).json({
             success: false,
@@ -22,7 +22,7 @@ export const verifyJWT = (req: CustomRequest, res: Response, next: NextFunction)
 
     //decode the token 
     jwt.verify(token, process.env.ACCESS_TOKEN as string, (err, decoded: {id: string, email: string}) => {
-        if(err) return res.status(403).json({message: "fatal error"});
+        if(err) return res.status(403).json({message: "Invalid token"});
         req.email = decoded.email;
         req.id = decoded.id;
         next();

@@ -3,9 +3,6 @@ interface Admin {
     email: string;
     hashedPassword: string;
     avatar?: string;
-    authentication: {
-        refreshToken: string;
-    }
     role?: string;
 
 };

@@ -20,11 +20,7 @@ const UserSchema = new Schema<User>({
     type: String,
     required: true,
   },
-  authentication: {
-    refreshToken: {
-      type: String,
-    },
-  },
+
   role: {
     type: String,
     default: "user",
@@ -47,11 +43,6 @@ const AdminSchema = new Schema<Admin>({
   hashedPassword: {
     type: String,
     required: true,
-  },
-  authentication: {
-    refreshToken: {
-      type: String,
-    },
   },
   role: {
     type: String,
@@ -174,10 +165,4 @@ export const getUserByEmail = async (type: ("Admin" | "User"), email: string) =>
 };
 
 
-
-
-
-
-
-//method to generate tokens
 

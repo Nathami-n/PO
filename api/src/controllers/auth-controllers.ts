@@ -24,7 +24,6 @@ export const createAdmin = async (req: Request, res: Response) => {
     email,
     name,
     hashedPassword,
-    authentication: { refreshToken: "" },
   };
 
   //check whether user exists
@@ -75,7 +74,6 @@ export const createNormalUser = async (req: Request, res: Response) => {
     email,
     name,
     hashedPassword,
-    authentication: { refreshToken: "" },
   };
 
   //check whether user exists
@@ -150,14 +148,11 @@ export const loginAdmin = async (req: Request, res: Response) => {
   const refreshToken = jwt.sign(
     { id: isUserFound._id, email: isUserFound.email },
     process.env.REFRESH_TOKEN as string,
-    { expiresIn: "7d" }
+    { expiresIn: "30d" }
   );
 
   //update the authentication
   try {
-    await isUserFound.updateOne({
-      authentication: { refreshToken: refreshToken },
-    });
     const newUser = await AdminModel.findOne({ email: isUserFound.email });
     const { hashedPassword: pass, ...rest } = newUser.toObject();
     //cookie options
@@ -167,8 +162,8 @@ export const loginAdmin = async (req: Request, res: Response) => {
     };
 
     return res
-      .cookie("accessToken", accessToken, options)
-      .json({ success: true, data: { body: rest, error: null } });
+      .cookie("refreshToken", refreshToken, options)
+      .json({ success: true, data: { body: {user: rest, accessToken}, error: null } });
   } catch (e: any) {
     throw new Error(e.message);
   }
