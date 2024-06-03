@@ -10,6 +10,7 @@ import {PORT, mongoUri} from './config/connection';
 import {makeConnection} from './db/mongo';
 import {authRouter} from "./routes/auth";
 import { eventLogger } from './middleware/eventLogger';
+import { errorLogMiddleware } from './middleware/errorLogger';
 
 //app
 const app = express();
@@ -21,6 +22,7 @@ app.use(eventLogger)
 app.use(cors(delegateFunction));
 app.use(compression());
 app.use(cookieParser());
+// app.use(errorLogMiddleware);
 
 
 //authentication

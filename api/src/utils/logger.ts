@@ -13,7 +13,7 @@ export const loggerFunction =  async (message: string, filename: string) => {
     //check for the existence of the file in the log folder
 
     try {
-        if(fs.existsSync(path.join(__dirname, '..', 'logs'))) {
+        if(!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
             await mkdir(path.join(__dirname, '..', 'logs'));
         };
 
