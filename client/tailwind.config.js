@@ -6,7 +6,11 @@ export default withMT({
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        text: "#6f6c90",
+      }
+    },
   },
   plugins: [],
 });
