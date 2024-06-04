@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken';
  export interface CustomRequest extends Request {
     email: string;
     id: string;
+    cookies: {
+        refreshToken: string;
+    }
 }
 
 export const verifyJWT = (req: CustomRequest, res: Response, next: NextFunction) => {

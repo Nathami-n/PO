@@ -1,17 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css';
 
 import { ThemeProvider } from '@material-tailwind/react';
-import { BrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter
+} from 'react-router-dom';
+import { Home, SignUp, Login } from './pages';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/signup',
+    element: <SignUp />
+  }
+])
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <RouterProvider router={ } />
     </ThemeProvider>
   </React.StrictMode>,
 )

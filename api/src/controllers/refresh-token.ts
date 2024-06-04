@@ -6,15 +6,16 @@ import { CustomRequest } from "../middleware/jwt";
 
 export const refreshAdminToken = async (req: CustomRequest, res: Response) => {
   try {
-    const refreshToken = req.cookies.refreshToken as string;
+    const cookies = req.cookies;
+    console.log(cookies.refreshToken);
 
-    if(!refreshToken) return res.json({
+    if(!cookies.refreshToken) return res.json({
       success: false,
       data: {body: null, error: "No refresh token in cookie"}
     });
 
     try {
-      const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN as string) as {id: string, email: string};
+      const decoded = jwt.verify(cookies.refreshToken, process.env.REFRESH_TOKEN as string) as {id: string, email: string};
 
 
       //generate new accessToken
