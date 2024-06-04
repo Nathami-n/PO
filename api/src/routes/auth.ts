@@ -7,7 +7,7 @@ const authRouter = Router();
 
 authRouter.route('/register/admin').post(createAdmin);
 authRouter.route('/register/user').post(createNormalUser);
-authRouter.route('/login/admin').post(verifyJWT, loginAdmin);
+authRouter.route('/login/admin').post( loginAdmin);
 authRouter.route('/login/admin/refresh').post(refreshAdminToken);
 
 
