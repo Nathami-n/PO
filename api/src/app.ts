@@ -10,6 +10,7 @@ import {PORT, mongoUri} from './config/connection';
 import {makeConnection} from './db/mongo';
 import {authRouter} from "./routes/auth";
 import { eventLogger } from './middleware/eventLogger';
+import refreshRouter from './routes/refresh';
 import { errorLogMiddleware } from './middleware/errorLogger';
 
 //app
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 //authentication
 app.use('/auth', authRouter);
+app.use('/refresh', refreshRouter);
 
 
 

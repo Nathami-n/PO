@@ -230,9 +230,9 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 
-export const logOutAdmin = () => {
-  
-}
-export const logOutUser = () => {
-
-}
+export const logOutAdmin = (req: Request, res: Response) => {
+  const cookies = req.cookies;
+  if(!cookies.refreshToken) return res.sendStatus(204);
+  res.clearCookie("refreshToken", {secure: true, httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+  return res.json({message: "cookie cleared"});
+};
