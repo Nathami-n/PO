@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { Request, Response, Model } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -9,10 +9,18 @@ dotenv.config({
 
 import { AdminModel, UserModel, createUser, getUserByEmail } from "../model/user-models";
 
-export const createAdmin = async (req: Request, res: Response) => {
-  const { email, name, password } = req.body;
+export const registerUser = async (req: Request, res: Response) => {
+  let model: Model< typeof AdminModel | typeof UserModel>;
+  const { email, name, password } = req.body.form;
+  const role = req.body.role as string;
 
-  if (!email || !name || !password) {
+  if(role === "Admin") {
+    model = AdminModel
+  }  else if (role === "User") {
+    model = UserModel
+  }
+
+  if (!email || !name || !password || !role) {
     return res.json({
       success: false,
       data: { body: null, error: "Missing credentials" },
@@ -27,7 +35,7 @@ export const createAdmin = async (req: Request, res: Response) => {
   };
 
   //check whether user exists
-  const isUserRegistered = await getUserByEmail("Admin", email);
+  const isUserRegistered = await getUserByEmail(`${role === "Admin" ? "Admin" : "User"}`, email);
   if (isUserRegistered || isUserRegistered !== null) {
     return res.json({
       success: false,

@@ -213,3 +213,5 @@
 20240604	 10:45:52	 23cfd7e1-4a4c-4cdf-9f01-d82a5c20e550GET	 /refresh/admin	 undefined
 20240604	 10:46:01	 df292552-8793-46ad-a870-3850fe23b22fGET	 /refresh/admin	 undefined
 20240604	 10:47:28	 5da54de2-d611-49ec-a75e-ffc022d0851eGET	 /refresh/admin	 undefined
+20240605	 17:49:27	 9f07d234-f51a-49c8-a93e-6acc1a8e682bOPTIONS	 /auth/register/Admin	 http://localhost:5173
+20240605	 17:49:27	 d859bfe5-cf32-4c9d-a043-4887d17119a9POST	 /auth/register/Admin	 http://localhost:5173
