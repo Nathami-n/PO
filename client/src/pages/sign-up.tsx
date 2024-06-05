@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, registerSchemaType } from "../zod/form-schema";
-import { Select, Option } from "@material-tailwind/react";
+import { Select, Option, Spinner } from "@material-tailwind/react";
 import { useState} from "react";
+import {Audio, FidgetSpinner} from 'react-loader-spinner';
 
 const SignUp = () => {
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState<string | undefined>("");
   const [isPending, setIsPending] = useState();
   console.log(role);
   const {
@@ -68,12 +69,26 @@ const SignUp = () => {
                   </Select>
                 </div>
               </div>
-              <input
-                type="submit"
-                disabled={isPending}
-                className={`bg-customBlue text-white cursor-pointer hover:scale-105 transition-all w-full rounded-full p-4 mt-5 ${isPending ? "bg-gray-600 text-gray-400": ""}`}
-                value="Sign Up"
+             <div>
+              <button
+              type="submit"
+              disabled={isPending}
+              className={`bg-customBlue text-white flex items-center justify-center cursor-pointer hover:scale-105 transition-all w-full rounded-full p-4 mt-5`}
+              value="Sign Up"
+            >
+              {isPending ? (
+                <div className="flex flex-row-reverse items-center">
+              <Spinner 
+              
+              height={24}
+              width={24}
               />
+    
+              </div>
+              ): <p>Sign Up</p>}
+            </button>
+             
+             </div>
 
               <div className="flex items-center mt-2">
                 <div className="bg-[#eff0f6] h-[1px] w-full" />
