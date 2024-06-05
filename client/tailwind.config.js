@@ -9,6 +9,13 @@ export default withMT({
     extend: {
       colors: {
         text: "#6f6c90",
+        customBlue: "#4a3aff",
+        darkBlue: "#170f49"
+      },
+      backgroundImage: {
+        "user": "url(/email.svg)",
+        "pass": "url(/lock.svg)",
+        "mail": "url(/mail.svg)"
       }
     },
   },
