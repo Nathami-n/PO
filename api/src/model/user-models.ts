@@ -125,33 +125,6 @@ const userChoice: Record<"Admin" | "User", Model<any>> = {
   User: UserModel,
 };
 
-//database methods
-export const createUser = async (name: string, data: union) => {
-  let modelName;
-
-  switch (name) {
-    case "Admin": {
-      modelName = AdminModel;
-    };
-    case "User": {
-        modelName = UserModel;
-    }
-    default: {
-      console.log("error");
-    }
-  }
-
-  //create the document
-  try {
-    if (modelName !== null) {
-      const user = await modelName.create(data);
-      return user;
-    }
-  } catch (error: any) {
-    console.log("error in creating document");
-    console.error(error);
-  }
-};
 
 export const getUserByEmail = async (type: ("Admin" | "User"), email: string) => {
   let model = userChoice[type];
