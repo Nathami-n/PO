@@ -2,7 +2,7 @@ import {CiGlobe} from 'react-icons/ci';
 
 const Header = () => {
     return (
-        <div className="flex items-center shadow-sm p-3 ">
+        <div className="flex items-center shadow-sm p-3 bg-white ">
             <div> Dashboard overview</div>
             <div className='flex items-center gap-x-2 ml-auto mr-2'>
                 <div className="bg-[#dddfda] rounded-full flex items-center justify-center h-9 w-9">
