@@ -28,4 +28,4 @@ export async function loginUser (payload: {form: loginSchemaType, role: string |
 
     const userData = await response.json();
     console.log(userData.data.body);
-};
+}

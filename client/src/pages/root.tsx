@@ -1,16 +1,17 @@
 import { SideBar, Header } from "../components";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   return (
-
-    <div>
+    <div className="flex bg-bg min-h-screen w-full">
       {/* sidenav */}
-      <div>
         <SideBar />
-      </div>
       {/* main content */}
-      <div>
+      <div className=" flex-[2.5]">
         <Header/>
+        <div>
+        <Outlet/>
+        </div>
       </div>
     </div>
   )

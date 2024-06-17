@@ -5,36 +5,36 @@ export const navlinks = [
     {
         id: 1,
         title: "Dashboard",
-        icon:<RxDashboard/>,
+        icon:<RxDashboard size={20}/>,
     },
     {
         id: 2,
         title: "Sales",
-        icon: <CiShop/>
+        icon: <CiShop size={20}/>
     },
     {
         id: 3,
         title: "Purchases",
-        icon:<CiShoppingBasket/>
+        icon:<CiShoppingBasket size={20}/>
     },
     {
         id:4,
         title:"POS",
-        icon: <CiShoppingCart/>
+        icon: <CiShoppingCart size={20}/>
     },
     {
         id: 5,
         title: "Expenses",
-        icon: <CiWallet/>
+        icon: <CiWallet size={20}/>
     },
     {
         id: 6,
         title: "Reports",
-        icon: <CiReceipt/>
+        icon: <CiReceipt size={20}/>
     },
     {
         id: 7,
         title: 'Settings',
-        icon: <CiSettings/>
+        icon: <CiSettings size={20}/>
     },
 ];
