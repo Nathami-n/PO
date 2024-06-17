@@ -5,7 +5,7 @@ import { BarChartConfig } from '../config/charts-config';
 
 const BarChartComponent = () => {
     return (
-        <Chart {...BarChartConfig}/>
+        <Chart  {...BarChartConfig}/>
     )
 }
 
