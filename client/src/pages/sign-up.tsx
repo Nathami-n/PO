@@ -2,22 +2,35 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, registerSchemaType } from "../zod/form-schema";
 import { Select, Option, Spinner } from "@material-tailwind/react";
-import { useState} from "react";
-import {Audio, FidgetSpinner} from 'react-loader-spinner';
+import { useState } from "react";
+import { registerUser } from "../utils/helpers";
 
 const SignUp = () => {
   const [role, setRole] = useState<string | undefined>("");
-  const [isPending, setIsPending] = useState();
+  const [isPending, setIsPending] = useState(false);
   console.log(role);
   const {
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
     register,
   } = useForm<registerSchemaType>({
     resolver: zodResolver(registerSchema),
   });
   const onSubmit = (data: registerSchemaType) => {
-    setIsPending(true);
+    setIsPending(true)
+    try {
+      const sendData = {
+        form: data,
+        role: role
+      };
+      registerUser(sendData);
+
+    } catch (e: any) {
+      console.error(e);
+
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -69,26 +82,26 @@ const SignUp = () => {
                   </Select>
                 </div>
               </div>
-             <div>
-              <button
-              type="submit"
-              disabled={isPending}
-              className={`bg-customBlue text-white flex items-center justify-center cursor-pointer hover:scale-105 transition-all w-full rounded-full p-4 mt-5`}
-              value="Sign Up"
-            >
-              {isPending ? (
-                <div className="flex flex-row-reverse items-center">
-              <Spinner 
-              
-              height={24}
-              width={24}
-              />
-    
+              <div>
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className={`bg-customBlue text-white flex items-center justify-center cursor-pointer hover:scale-105 transition-all w-full rounded-full p-4 mt-5`}
+                  value="Sign Up"
+                >
+                  {isPending ? (
+                    <div className="flex flex-row-reverse items-center">
+                      <Spinner
+
+                        height={24}
+                        width={24}
+                      />
+
+                    </div>
+                  ) : <p>Sign Up</p>}
+                </button>
+
               </div>
-              ): <p>Sign Up</p>}
-            </button>
-             
-             </div>
 
               <div className="flex items-center mt-2">
                 <div className="bg-[#eff0f6] h-[1px] w-full" />

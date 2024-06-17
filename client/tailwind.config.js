@@ -10,7 +10,8 @@ export default withMT({
       colors: {
         text: "#6f6c90",
         customBlue: "#4a3aff",
-        darkBlue: "#170f49"
+        darkBlue: "#170f49",
+        side: "#121221"
       },
       backgroundImage: {
         "user": "url(/email.svg)",
