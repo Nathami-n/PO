@@ -1,4 +1,5 @@
-import { Card, Typography, CardHeader } from "@material-tailwind/react";
+import { Card, Typography, CardHeader, CardBody } from "@material-tailwind/react";
+import {StockCard} from './stock-card';
 
 const cardData = [
     {
@@ -28,14 +29,18 @@ const cardData = [
 
 export default function Stock() {
     return (
-        <Card className="h-full w-full">
-            <CardHeader>
-                <Typography variant="h5" color="blue-gray">
+        <Card className="h-full w-full  min-h-full mt-0 p-1">
+            <CardHeader floated={false} className="rounded-none" shadow={false}>
+                <Typography variant="h5" color="blue-gray" >
                     Stock History
-                </Typography>
+                </Typography>   
             </CardHeader>
             <CardBody>
-
+                <div className="flex flex-col gap-y-3">
+                {cardData.map((item, i)=>(
+                    <StockCard key={i} item={item}/>
+                ))}
+                </div>
             </CardBody>
         </Card>
     )
