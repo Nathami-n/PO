@@ -1,4 +1,4 @@
-import { Finance, ChartGraphs } from "../components";
+import { Finance, ChartGraphs, TableStock} from "../components";
 
 const DashBoard = () => {
     return (
@@ -6,6 +6,7 @@ const DashBoard = () => {
             {/* finance */}
             <Finance/>
             <ChartGraphs/>
+            <TableStock/>
         </div>
     )
 };
