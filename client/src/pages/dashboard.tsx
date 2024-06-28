@@ -1,4 +1,4 @@
-import { Finance, ChartGraphs, TableStock} from "../components";
+import { Finance, ChartGraphs, TableStock, Stock} from "../components";
 
 const DashBoard = () => {
     return (
@@ -6,7 +6,10 @@ const DashBoard = () => {
             {/* finance */}
             <Finance/>
             <ChartGraphs/>
+            <div className="flex items-center">
             <TableStock/>
+            <Stock/>
+            </div>
         </div>
     )
 };
