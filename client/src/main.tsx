@@ -17,7 +17,7 @@ import {
   Purchases,
   Reports,
   Settings,
-  Expenses
+  Expenses,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -32,10 +32,6 @@ const router = createBrowserRouter([
       {
         path: '/Sales',
         element: <Sales />
-      },
-      {
-        path: '/POS',
-        element: <POS/>
       },
       {
         path: '/Purchases',
@@ -58,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignUp />
+  },
+  {
+    path: '/POS',
+    element:<POS/>
   }
 ])
 

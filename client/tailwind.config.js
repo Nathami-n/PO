@@ -13,7 +13,7 @@ export default withMT({
         darkBlue: "#170f49",
         side: "#121221",
         sidet:"#bcbcc0",
-        bg:"#f2f2f8"
+        bg:"#f7f7f7"
       },
       backgroundImage: {
         "user": "url(/email.svg)",

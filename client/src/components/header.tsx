@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 const Header = () => {
     const pathname = useLocation().pathname.split('/').pop();
+    const classes = pathname === 'POS' ? "shadow-md ": "shadow-sm";
 
     return (
-        <div className="flex items-center shadow-sm p-3 bg-white ">
-            <div> {pathname}</div>
+        <div className={`${classes} flex items-center shadow-sm p-3 bg-white `}>
+            <div className=''> {pathname}</div>
             <div className='flex items-center gap-x-2 ml-auto mr-2'>
                 <div className="bg-[#dddfda] rounded-full flex items-center justify-center h-9 w-9">
                 <CiGlobe size={20}/>
