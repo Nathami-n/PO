@@ -1,5 +1,5 @@
-import { Card, Typography, CardHeader, CardBody } from "@material-tailwind/react";
-import {StockCard} from './stock-card';
+import { Card, Typography, CardHeader, CardBody, CardFooter } from "@material-tailwind/react";
+import { StockCard } from './stock-card';
 
 const cardData = [
     {
@@ -16,7 +16,7 @@ const cardData = [
     },
     {
         id: 3,
-        title:"Total Purchase Items",
+        title: "Total Purchase Items",
         number: 200,
     },
     {
@@ -29,20 +29,26 @@ const cardData = [
 
 export default function Stock() {
     return (
-        <Card className="h-full w-full  min-h-full mt-0 p-1">
-            <CardHeader floated={false} className="rounded-none" shadow={false}>
-                <Typography variant="h5" color="blue-gray" >
-                    Stock History
-                </Typography>   
-            </CardHeader>
-            <CardBody>
-                <div className="flex flex-col gap-y-3">
-                {cardData.map((item, i)=>(
-                    <StockCard key={i} item={item}/>
-                ))}
-                </div>
-            </CardBody>
-        </Card>
+        <div className="w-full h-full flex-[.8]">
+            <Card>
+                <CardHeader floated={false} className="rounded-none" shadow={false}>
+                    <div className="flex items-center justify-between">
+                        <Typography variant="h5" color="blue-gray" >
+                            Stock History
+                        </Typography>
+
+                    </div>
+                </CardHeader>
+                <CardBody>
+                    <div className="flex flex-col gap-y-3">
+                        {cardData.map((item, i) => (
+                            <StockCard key={i} item={item} />
+                        ))}
+                    </div>
+                </CardBody>
+                <CardFooter><div>Content goes here</div></CardFooter>
+            </Card>
+        </div>
     )
 
 };

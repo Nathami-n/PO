@@ -1,46 +1,19 @@
 import { PencilIcon } from "@heroicons/react/24/solid";
 import Stock from './stock';
 import {
-  ArrowDownTrayIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
-import {
   Card,
   CardHeader,
   Typography,
-  Button,
   CardBody,
   Chip,
-  CardFooter,
   Avatar,
   IconButton,
   Tooltip,
-  Input,
 } from "@material-tailwind/react";
 
 const TABLE_HEAD = ["Transaction", "Amount", "Date", "Status", "Account", ""];
 
 const TABLE_ROWS = [
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
-    name: "Spotify",
-    amount: "$2,500",
-    date: "Wed 3:00pm",
-    status: "paid",
-    account: "visa",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
-  {
-    img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
-    name: "Amazon",
-    amount: "$5,000",
-    date: "Wed 1:00pm",
-    status: "paid",
-    account: "master-card",
-    accountNumber: "1234",
-    expiry: "06/2026",
-  },
   {
     img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
     name: "Pinterest",
@@ -75,8 +48,8 @@ const TABLE_ROWS = [
 
 export default function TableStock() {
   return (
-    <div className="flex items-center mt-5">
-      <div> <Card className="h-full">
+    <div className="flex items-center mt-5 gap-x-4">
+      <div className="flex-[1.5]"> <Card className="h-full">
         <CardHeader floated={false} shadow={false} className="rounded-none">
             <div>
               <Typography variant="h5" color="blue-gray">
@@ -231,8 +204,8 @@ export default function TableStock() {
             </tbody>
           </table>
         </CardBody>
-      </Card></div>
-
+      </Card>
+      </div>
       <Stock />
     </div>
   );

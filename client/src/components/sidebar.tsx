@@ -5,7 +5,7 @@ const SideBar = () => {
     const location = useLocation();
     const path = location.pathname.split('/')[1];
     return (
-        <div className="bg-side h-screen flex flex-col gap-y-8 text-sidet w-full p-1 flex-[0.5]">
+        <div className="bg-side h-screen flex flex-col gap-y-8 text-sidet w-full p-1 flex-[0.6]">
             <div>Awesome Logo</div>
             <div className="flex flex-col px-4 gap-y-10">
                 {navlinks.map(nav => (
