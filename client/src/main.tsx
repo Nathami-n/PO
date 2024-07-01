@@ -7,7 +7,18 @@ import {
   RouterProvider,
   createBrowserRouter
 } from 'react-router-dom';
-import { Home, SignUp, Login, DashBoard } from './pages';
+import { 
+  Home, 
+  SignUp, 
+  Login, 
+  DashBoard, 
+  Sales, 
+  POS,
+  Purchases,
+  Reports,
+  Settings,
+  Expenses
+} from './pages';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +26,32 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path:"/Dashboard",
-        element: <DashBoard/>
+        path: "/Dashboard",
+        element: <DashBoard />
+      },
+      {
+        path: '/Sales',
+        element: <Sales />
+      },
+      {
+        path: '/POS',
+        element: <POS/>
+      },
+      {
+        path: '/Purchases',
+        element: <Purchases/>
+      },
+      {
+        path: '/Expenses',
+        element: <Expenses/>
+      },
+      {
+        path: "/Reports",
+        element: <Reports/>
+      },
+      {
+        path: 'Settings',
+        element: <Settings/>
       }
     ]
   },
@@ -31,7 +66,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router } />
+      <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>,
 )

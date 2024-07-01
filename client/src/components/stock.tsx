@@ -30,13 +30,12 @@ const cardData = [
 export default function Stock() {
     return (
         <div className="w-full h-full flex-[.8]">
-            <Card>
-                <CardHeader floated={false} className="rounded-none" shadow={false}>
+            <Card className="-mt-2">
+                <CardHeader floated={false} className="rounded-none" shadow={false} >
                     <div className="flex items-center justify-between">
                         <Typography variant="h5" color="blue-gray" >
                             Stock History
                         </Typography>
-
                     </div>
                 </CardHeader>
                 <CardBody>
